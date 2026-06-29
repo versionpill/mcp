@@ -1,0 +1,68 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.versionpill/mcp",
+  "title": "Version Pill",
+  "description": "AI-native project management MCP. 60 token-lean tools with version-keyed edge caching for fast, low-cost project ops. Your PM buddy in Claude Code, Cursor, and Windsurf.",
+  "version": "6.4.0",
+  "websiteUrl": "https://versionpill.com",
+  "repository": {
+    "url": "https://github.com/versionpill/mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "transportType": "streamable-http",
+      "url": "https://mcp.versionpill.com/mcp"
+    },
+    {
+      "transportType": "sse",
+      "url": "https://mcp.versionpill.com/sse"
+    }
+  ],
+  "environmentVariables": [
+    {
+      "name": "key",
+      "description": "Your Version Pill API key (optional — OAuth is used otherwise). Get one at versionpill.com → Settings → API Keys",
+      "required": false
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "category": "project-management",
+      "tags": ["roadmap", "tasks", "changelog", "releases", "ai-context", "productivity", "ai-native"],
+      "protocolVersion": "2025-11-25",
+      "features": [
+        "60 action-based tools (save_/get_/list_/delete_ CRUD + entity_op dispatchers)",
+        "context tool: 8 modes (state/work/full/docs/smart/session/diff/story) with token-budget delivery",
+        "insights: velocity, 365-day heatmap, project pulse/health — PM analytics in one tool",
+        "task_op prioritize: RICE-scores and ranks the backlog by value-per-effort",
+        "brain_dump: end-of-session bulk complete/create/move in ONE call",
+        "batch: run up to 10 tools in parallel",
+        "Version-keyed edge caching — writes invalidate instantly, reads stay fresh and cheap",
+        "Agent memory + semantic search (brain) across all project knowledge",
+        "Cross-app notes/docs/journal (Snow Labs vault) and GitHub two-way sync",
+        "AI PM workflows: PRD, acceptance criteria, retro, changelog, and more"
+      ],
+      "useCases": [
+        "AI PM buddy in Claude Code/Cursor/Windsurf",
+        "Manage roadmaps and ship releases from the terminal",
+        "Persist agent memory and session context across tools",
+        "Triage ideas, plan sprints, and generate PM docs"
+      ]
+    },
+    "tokenEfficiency": {
+      "description": "Designed for minimal token usage in every interaction",
+      "patterns": {
+        "sessionStart": "context({ project, mode: 'work' }) → board + blockers",
+        "startWork": "save_task({ id, column: 'in-progress' })",
+        "completeWork": "save_task({ id, column: 'done', learnings })",
+        "endSession": "brain_dump({ project, completed: [...], followUps: [...] })"
+      },
+      "smartFetching": {
+        "context": "mode: state (default) | work | full | docs | smart | session | diff | story; pass budget for token-capped delivery",
+        "lists": "detail: compact (default) | standard | detailed",
+        "bulk": "save_task/save_epic/save_cycle accept items[] for bulk upsert"
+      }
+    }
+  }
+}
