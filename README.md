@@ -70,6 +70,12 @@ mcp-publisher login github
 mcp-publisher publish
 ```
 
+## Scope & licensing
+
+**This repository contains only MCP connector metadata (`server.json`) and documentation.**
+
+The VersionPill MCP server itself is **proprietary software**. Its source code is not published here and is not open-source. Users connect to the hosted endpoint over HTTPS; nothing is installed or cloneable. The MIT license below applies solely to the metadata and docs in this repo, so registries and aggregators can index them without legal friction — it does **not** cover the server software.
+
 ## License
 
-MIT
+MIT (applies to `server.json` and documentation in this repo only; the VersionPill server is proprietary, all rights reserved).
