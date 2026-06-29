@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.versionpill/mcp",
   "title": "Version Pill",
-  "description": "AI-native project management MCP. 60 token-lean tools with version-keyed edge caching for fast, low-cost project ops. Your PM buddy in Claude Code, Cursor, and Windsurf.",
+  "description": "AI-native project management MCP - 60 token-lean tools for tasks, releases, and agent memory.",
   "version": "6.4.0",
   "websiteUrl": "https://versionpill.com",
   "repository": {
