@@ -1,0 +1,18 @@
+{
+  "name": "versionpill",
+  "version": "6.2.0",
+  "description": "Product memory for coding agents. Hosted VersionPill board via MCP — vision, work, and a public version customers understand.",
+  "author": {
+    "name": "VersionPill",
+    "url": "https://github.com/versionpill"
+  },
+  "repository": "https://github.com/versionpill/mcp",
+  "homepage": "https://versionpill.com",
+  "license": "MIT",
+  "keywords": [
+    "versionpill",
+    "version pill",
+    "versionpill board",
+    "versionpill mcp"
+  ]
+}

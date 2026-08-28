@@ -1,81 +1,47 @@
-# Version Pill MCP
+# VersionPill MCP
 
-AI-native project management for your coding agent. 60 token-lean tools for tasks, releases, epics, cycles, docs, and ideas — with version-keyed edge caching, agent memory, and RICE backlog prioritization. Your PM buddy in Claude Code, Cursor, Windsurf, and opencode.
+Product memory for coding agents. The terminal builds; VersionPill remembers the product.
 
-- **Hosted endpoint:** `https://mcp.versionpill.com/mcp`
-- **Website:** [versionpill.com](https://versionpill.com)
-- **Source:** the worker lives in the Snow Labs monorepo; this repo is the public home for registry metadata, docs, and issues.
+This repository is **connector metadata** for host directories (Claude, Grok, Cursor, ChatGPT, the official MCP registry). The server is hosted. Nothing here is the backend source.
+
+- **MCP URL:** `https://mcp.versionpill.com/mcp`
+- **Connect:** [versionpill.com/connect](https://versionpill.com/connect)
+- **Privacy:** [versionpill.com/privacy](https://versionpill.com/privacy)
+- **App:** [versionpill.com](https://versionpill.com)
 
 ## Connect
 
-### Claude Code (`~/Library/Application Support/Claude/claude_desktop_config.json`)
+Paste the URL only. Hosts that speak OAuth open a browser. Sign in, pick a workspace, Authorize once.
 
 ```json
 {
   "mcpServers": {
     "versionpill": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.versionpill.com/sse"]
+      "url": "https://mcp.versionpill.com/mcp"
     }
   }
 }
 ```
 
-### Claude.ai (Connectors)
+| Host | Path |
+|------|------|
+| Claude | Settings → Connectors → Add custom connector |
+| Grok | [grok.com/connectors](https://grok.com/connectors) → New Connector → Custom |
+| Cursor | Settings → MCP → Add server |
+| ChatGPT | Developer mode → add connector |
 
-Connect via **Custom Connector** with URL: `https://mcp.versionpill.com/mcp` (streamable HTTP, OAuth).
+Do not use Convex `.site` / `.cloud` URLs or `/sse`. Streamable HTTP on `/mcp` is the only public endpoint.
 
-### opencode (`~/.config/opencode/opencode.json`)
+API keys (`vp_…`) are an advanced fallback for scripts. Prefer OAuth.
 
-```json
-{
-  "mcp": {
-    "versionpill": {
-      "type": "remote",
-      "url": "https://mcp.versionpill.com/mcp",
-      "oauth": {}
-    }
-  }
-}
-```
+## What the agent can do
 
-Then run `opencode mcp auth versionpill`.
+Read the board, open a known card, move work, import a tree, comment, draft a ship note. Default profile is board (lean). `?profile=exec` is smaller for known-card coding. `?profile=readonly` cannot write.
 
-### Cursor / Windsurf
+## Registry
 
-Add a remote MCP server at `https://mcp.versionpill.com/sse` and complete the OAuth flow.
-
-## Authentication
-
-OAuth is the default (browser flow, 30-day tokens). For non-interactive use, generate an API key at versionpill.com → Settings → API Keys and send it as `Authorization: Bearer vp_…`.
-
-## Tools at a glance
-
-- **CRUD:** `save_X` / `get_X` / `list_X` / `delete_X` for tasks, releases, docs, epics, cycles, ideas
-- **Agent intelligence:** `context` (8 modes), `brain`, `brain_dump`, `memory`, `session`, `learn`, `decision`, `planner`
-- **Ops:** `prioritize`, `ship_releases`, `publish_release`, `complete_cycle`, `github`, `search`, `project_status`
-
-## Publishing to the MCP Registry
-
-This repo is the source of truth for registry metadata. On tag push, the
-[publish workflow](.github/workflows/publish-mcp.yml) validates `server.json` and
-publishes to `registry.modelcontextprotocol.io` via `mcp-publisher` (GitHub OIDC).
-
-To publish manually:
-
-```bash
-brew install mcp-publisher
-mcp-publisher validate
-mcp-publisher login github
-mcp-publisher publish
-```
-
-## Scope & licensing
-
-**This repository contains only MCP connector metadata (`server.json`) and documentation.**
-
-The VersionPill MCP server itself is **proprietary software**. Its source code is not published here and is not open-source. Users connect to the hosted endpoint over HTTPS; nothing is installed or cloneable. The MIT license below applies solely to the metadata and docs in this repo, so registries and aggregators can index them without legal friction — it does **not** cover the server software.
+Published as `io.github.versionpill/mcp`. On version tag, GitHub Actions runs `mcp-publisher`.
 
 ## License
 
-MIT (applies to `server.json` and documentation in this repo only; the VersionPill server is proprietary, all rights reserved).
+MIT applies to the metadata and docs in this repo only. The hosted server is proprietary.

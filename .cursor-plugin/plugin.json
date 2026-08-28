@@ -1,0 +1,21 @@
+{
+  "name": "versionpill",
+  "displayName": "VersionPill",
+  "version": "6.2.0",
+  "description": "Product memory for coding agents. Connect the hosted VersionPill board with one MCP URL.",
+  "author": {
+    "name": "VersionPill",
+    "email": "hello@versionpill.com"
+  },
+  "homepage": "https://versionpill.com/connect",
+  "repository": "https://github.com/versionpill/mcp",
+  "license": "MIT",
+  "keywords": [
+    "versionpill",
+    "mcp",
+    "product-board",
+    "changelog"
+  ],
+  "logo": "assets/logo.svg",
+  "mcpServers": "mcp.json"
+}
